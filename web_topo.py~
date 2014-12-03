@@ -1,0 +1,77 @@
+"""Custom topology example
+
+Two directly connected switches plus a host for each switch:
+
+   host --- switch --- switch --- host
+
+Adding the 'topos' dict with a key/value pair to generate our newly defined
+topology enables one to pass in '--topo=mytopo' from the command line.
+"""
+
+from mininet.topo import Topo
+
+class MyTopo( Topo ):
+    "Simple topology example."
+
+    def __init__( self ):
+        "Create custom topo."
+
+        # Initialize topology
+        Topo.__init__( self )
+
+        # Add hosts and switches
+        leftTopHost = self.addHost( 'hl1' )
+        leftMidHost = self.addHost( 'hl2' )
+        leftBotHost = self.addHost( 'hl3' )
+
+        rightTopHost = self.addHost( 'hr1' )
+        rightMidHost = self.addHost( 'hr2' )
+        rightBotHost = self.addHost( 'hr3' )
+
+        leftTopSwitch = self.addSwitch( 's11' )
+        leftMidSwitch = self.addSwitch( 's12' )
+        leftBotSwitch = self.addSwitch( 's13' )
+
+        midTopSwitch = self.addSwitch( 's21' )
+        midMidSwitch = self.addSwitch( 's22' )
+        midBotSwitch = self.addSwitch( 's23' )
+
+        rightTopSwitch = self.addSwitch( 's31' )
+        rightMidSwitch = self.addSwitch( 's32' )        
+        rightBotSwitch = self.addSwitch( 's33' )
+
+        # Add links
+        self.addLink( leftTopHost, leftTopSwitch )
+        self.addLink( leftMidHost, leftMidSwitch )
+        self.addLink( leftBotHost, leftBotSwitch )
+
+        self.addLink( rightTopHost, rightTopSwitch )
+        self.addLink( rightMidHost, rightMidSwitch )
+        self.addLink( rightBotHost, rightBotSwitch )
+
+        self.addLink( leftTopSwitch, midTopSwitch )
+        self.addLink( leftMidSwitch, midTopSwitch )
+        self.addLink( leftBotSwitch, midTopSwitch )
+
+        self.addLink( leftTopSwitch, midMidSwitch )
+        self.addLink( leftMidSwitch, midMidSwitch )
+        self.addLink( leftBotSwitch, midMidSwitch )
+
+        self.addLink( leftTopSwitch, midBotSwitch )
+        self.addLink( leftMidSwitch, midBotSwitch )
+        self.addLink( leftBotSwitch, midBotSwitch )
+        
+        self.addLink( rightTopSwitch, midTopSwitch )
+        self.addLink( rightMidSwitch, midTopSwitch )
+        self.addLink( rightBotSwitch, midTopSwitch )
+
+        self.addLink( rightTopSwitch, midMidSwitch )
+        self.addLink( rightMidSwitch, midMidSwitch )
+        self.addLink( rightBotSwitch, midMidSwitch )
+
+        self.addLink( rightTopSwitch, midBotSwitch )
+        self.addLink( rightMidSwitch, midBotSwitch )
+        self.addLink( rightBotSwitch, midBotSwitch )
+
+
+topos = { 'mytopo': ( lambda: MyTopo() ) }

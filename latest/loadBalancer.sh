@@ -1,0 +1,34 @@
+#!/bin/sh
+
+curl -X POST -d '{"id":"1","name":"vip1","protocol":"tcp","address":"10.255.0.100","port":"80"}' http://localhost:8080/quantum/v1.0/vips/
+curl -X POST -d '{"id":"1","name":"pool1","protocol":"tcp","vip_id":"1"}' http://localhost:8080/quantum/v1.0/pools/
+curl -X POST -d '{"id":"1","address":"10.0.0.1","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"2","address":"10.0.0.2","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"3","address":"10.0.0.3","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"4","address":"10.0.0.4","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"5","address":"10.0.0.5","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"6","address":"10.0.0.6","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"7","address":"10.0.0.7","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"8","address":"10.0.0.8","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"9","address":"10.0.0.9","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"10","address":"10.0.0.10","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"11","address":"10.0.0.11","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+curl -X POST -d '{"id":"12","address":"10.0.0.12","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"13","address":"10.0.0.13","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"14","address":"10.0.0.14","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"15","address":"10.0.0.15","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"16","address":"10.0.0.16","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"17","address":"10.0.0.17","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"18","address":"10.0.0.18","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"19","address":"10.0.0.19","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"20","address":"10.0.0.20","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"21","address":"10.0.0.21","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"22","address":"10.0.0.22","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"23","address":"10.0.0.23","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"24","address":"10.0.0.24","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"25","address":"10.0.0.25","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"26","address":"10.0.0.26","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"27","address":"10.0.0.27","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"28","address":"10.0.0.28","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"29","address":"10.0.0.29","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/
+#curl -X POST -d '{"id":"30","address":"10.0.0.30","port":"80","pool_id":"1"}' http://localhost:8080/quantum/v1.0/members/

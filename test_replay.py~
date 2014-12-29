@@ -9,6 +9,8 @@ topology enables one to pass in '--topo=mytopo' from the command line.
 """
 
 from mininet.topo import Topo
+from mininet.net import Mininet
+from mininet.node import RemoteController
 
 class MyTopo( Topo ):
     "Simple topology example."
@@ -54,4 +56,25 @@ class MyTopo( Topo ):
 	self.addLink( s3, s4 )
 
 if __name__ == '__main__':
-    topos = { 'mytopo': ( lambda: MyTopo() ) }
+    #topos = { 'mytopo': ( lambda: MyTopo() ) }
+    topos = MyTopo()
+    net = Mininet(topo=topos, controller=lambda name:RemoteController(name, defaultIP='127.0.0.1'), listenPort=6633)
+    net.start()
+
+    # Do a ping sweep to identify all hosts with controller
+    host1 = net.get('h1')
+    host2 = net.get('h2')
+    host1.cmd('ping -c1', host2.IP())
+
+    host1 = net.get('h3')
+    host2 = net.get('h4')
+    host1.cmd('ping -c1', host2.IP())
+
+    host1 = net.get('h5')
+    host2 = net.get('h6')
+    host1.cmd('ping -c1', host2.IP())
+
+    for x in range(1,6):
+        host = net.get('h%s' %x)
+        host.cmd('sudo /home/mininet/workspace/RequestDistributor/output/process.sh /home/mininet/workspace/RequestDistributor/output/ipfor%s.txt > /home/mininet/workspace/RequestDistributor/output/results/result_for_host%s.txt' %(x ,x))
+    

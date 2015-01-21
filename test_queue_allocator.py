@@ -10,12 +10,13 @@ topology enables one to pass in '--topo=mytopo' from the command line.
 import sys
 from mininet.topo import Topo
 from mininet.net import Mininet
+from mininet.link import TCLink
 from mininet.node import RemoteController
 
 class MyTopo( Topo ):
     "Simple topology example."
 
-    def __init__( self):
+    def __init__( self, maxbw):
         "Create custom topo."
 
         # Initialize topology
@@ -45,35 +46,40 @@ class MyTopo( Topo ):
         client7 = self.addHost('client7')
         client8 = self.addHost('client8')
 
-        self.addLink(s1,server1)
-        self.addLink(s1,server2)
-        self.addLink(s1,client1)
-        self.addLink(s1,client2)
-        self.addLink(s1,s5)
+        self.addLink(s1,server1, bw=maxbw)
+        self.addLink(s1,server2, bw=maxbw)
+        self.addLink(s1,client1, bw=maxbw)
+        self.addLink(s1,client2, bw=maxbw)
+        self.addLink(s1,s5, bw=maxbw)
 
-        self.addLink(s2,server3)
-        self.addLink(s2,server4)
-        self.addLink(s2,client3)
-        self.addLink(s2,client4)
-        self.addLink(s2,s5)
+        self.addLink(s2,server3, bw=maxbw)
+        self.addLink(s2,server4, bw=maxbw)
+        self.addLink(s2,client3, bw=maxbw)
+        self.addLink(s2,client4, bw=maxbw)
+        self.addLink(s2,s5, bw=maxbw)
 
-        self.addLink(s3,server5)
-        self.addLink(s3,server6)
-        self.addLink(s3,client5)
-        self.addLink(s3,client6)
-        self.addLink(s3,s5)
+        self.addLink(s3,server5, bw=maxbw)
+        self.addLink(s3,server6, bw=maxbw)
+        self.addLink(s3,client5, bw=maxbw)
+        self.addLink(s3,client6, bw=maxbw)
+        self.addLink(s3,s5, bw=maxbw)
 
-        self.addLink(s4,server7)
-        self.addLink(s4,server8)
-        self.addLink(s4,client7)
-        self.addLink(s4,client8)
-        self.addLink(s4,s5)
+        self.addLink(s4,server7, bw=maxbw)
+        self.addLink(s4,server8, bw=maxbw)
+        self.addLink(s4,client7, bw=maxbw)
+        self.addLink(s4,client8, bw=maxbw)
+        self.addLink(s4,s5, bw=maxbw)
 
 if __name__ == '__main__':
+    #default
+    maxbw = 10
     
+    if len(sys.argv) > 1:
+        maxbw = int(sys.argv[1])
+
     topos = { 'mytopo': ( lambda: MyTopo() ) }
-    topos = MyTopo()
-    net = Mininet(topo=topos, controller=lambda name:RemoteController(name, defaultIP='127.0.0.1'), listenPort=6633)
+    topos = MyTopo(maxbw)
+    net = Mininet(topo=topos, link = TCLink, controller=lambda name:RemoteController(name, defaultIP='127.0.0.1'), listenPort=6633)
     net.start()
 
    

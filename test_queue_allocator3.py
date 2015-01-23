@@ -1,3 +1,6 @@
+#! /usr/bin/python
+#  coding: utf-8
+
 """Custom topology example
 
 Two directly connected switches plus a host for each switch:
@@ -182,10 +185,12 @@ if __name__ == '__main__':
         client = net.get('c'+str(i))
         server = net.get('v'+str(i))
         client.cmd('ping -c 1 ',server.IP())
+        server.cmd('cd /home/mininet/floodlight-qos-beta-master/apps/qos/nweb')
+        server.cmd('./nweb23_ubuntu_12_4_32 1000%s /home/mininet/floodlight-qos-beta-master/apps/qos/nweb/gen_files/' % str(i))
 
-    client1 = net.get('c1')
-    client1.cmd('cd ~/floodlight-qos-beta-master/apps/qos')
-    client1.cmd('./process.sh ./convertRequest.txt > result_client1.txt &')
+    #client1 = net.get('c1')
+    #client1.cmd('cd ~/floodlight-qos-beta-master/apps/qos')
+    #client1.cmd('./process.sh ./convertRequest.txt > result_client1.txt &')
     
     CLI( net )
     # Shut down NAT

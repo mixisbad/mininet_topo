@@ -168,6 +168,9 @@ if __name__ == '__main__':
     
     if len(sys.argv) > 1:
         controller_ip = sys.argv[1]
+    else:
+        print "need controller ip"
+        exit(0)
 
     topos = { 'mytopo': ( lambda: MyTopo() ) }
     topos = MyTopo(maxbw)
@@ -189,7 +192,7 @@ if __name__ == '__main__':
         server.cmd('nohup ./nweb23_ubuntu_12_4_32 80 /home/mininet/floodlight-qos-beta-master/apps/qos/nweb/gen_files/ &')
         client.cmd('ping -c 1 ' + server.IP())
         client.cmd('cd /home/mininet/floodlight-qos-beta-master/apps/qos/')
-        client.cmd('nohup ./process.sh convertRequest.txt ' + client.IP() + ' ' + controller_ip+ ' >> show_output.txt &')
+        client.cmd('nohup ./process.sh convertRequest.txt ' + client.IP() + ' ' + controller_ip+ ' >> show_output' + client.IP() + '.txt &')
 
     #client1 = net.get('c1')
     #client1.cmd('cd ~/floodlight-qos-beta-master/apps/qos')

@@ -19,6 +19,7 @@ from mininet.cli import CLI
 from mininet.log import lg
 from mininet.node import Node
 from mininet.topolib import TreeNet
+import mysql.connector
 
 #################################
 def startNAT( root, inetIntf='eth0', subnet='10.0/8' ):
@@ -136,6 +137,22 @@ class MyTopo( Topo ):
         self.addLink(s2,s3)
 
 if __name__ == '__main__':
+
+    cnx = mysql.connector.connect(user='thesis', password='password',host='10.0.2.15',database='thesis')
+
+    cursor = cnx.cursor()
+    query = "DELETE FROM circuit" 
+    cursor.execute(query)
+
+    query = "DELETE FROM service" 
+    cursor.execute(query)
+    
+    query = "DELETE FROM policy" 
+    cursor.execute(query)
+
+    cnx.commit()
+    cnx.close()
+
     #default
     controller_ip = '10.0.2.15'
     if len(sys.argv) > 1:

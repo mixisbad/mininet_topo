@@ -127,13 +127,14 @@ class MyTopo( Topo ):
 
         self.addLink(s1,client1)
         self.addLink(s1,client2)
-        self.addLink(s1,s3)
+        
 
 
         self.addLink(s2,server1)
         self.addLink(s2,server2)
 
         self.addLink(s1,s2)
+	self.addLink(s1,s3)
         self.addLink(s2,s3)
 
 if __name__ == '__main__':
@@ -176,7 +177,7 @@ if __name__ == '__main__':
         client = net.get('c'+str(i))
         server = net.get('v'+str(i))
         
-        server.cmd('iperf -s &')
+        #server.cmd('iperf -s &')
         client.cmd('ping -c 1 ' + server.IP())
         #client.cmd('cd /home/mininet/floodlight-qos-beta-master/apps/qos/')
         #client.cmd('nohup ./process_fairness3.sh ' + server.IP() + ' ' + client.IP() + ' ' + controller_ip+ ' &')
